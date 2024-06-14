@@ -1,0 +1,318 @@
+Qno.1 Compare var, let, and const in Javascript. When would you use each?
+->
+In JavaScript, var, let, and const are used to declare variables, but they have different properties and use cases.
+1. var
+Scope: Function-scoped.
+Hoisting: Declarations are hoisted, initialized to undefined.
+Redeclaration: Allowed within the same scope.
+Example:
+function varExample() {
+    var x = 10;
+    var x = 20; // Redeclaration is allowed
+    console.log(x); // 20
+}
+varExample();
+
+2. let
+Scope: Block-scoped.
+Hoisting: Declarations are hoisted but not initialized.
+Redeclaration: Not allowed within the same scope.
+Example:
+function letExample() {
+    let y = 10;
+    // let y = 20; // SyntaxError: Identifier 'y' has already been declared
+    y = 20; // Reassignment is allowed
+    console.log(y); // 20
+}
+letExample();
+
+function letExampleBlockScope() {
+    let z = 30;
+    if (true) {
+        let z = 40; // Allowed in a different block scope
+        console.log(z); // 40
+    }
+    console.log(z); // 30
+}
+letExampleBlockScope();
+
+3. const
+Scope: Block-scoped.
+Hoisting: Declarations are hoisted but not initialized.
+Redeclaration: Not allowed within the same scope.
+Reassignment: Not allowed.
+Example:
+
+function constExample() {
+    const a = 50;
+    // const a = 60; // SyntaxError: Identifier 'a' has already been declared
+    // a = 60; // TypeError: Assignment to constant variable
+}
+constExample();
+
+function constExampleBlockScope() {
+    const b = 70;
+    if (true) {
+        const b = 80; // Allowed in a different block scope
+        console.log(b); // 80
+    }
+    console.log(b); // 70
+}
+constExampleBlockScope();
+
+When to Use Each
+var: Use in legacy code or when function-scoped variables are needed.
+let: Use when variables need to be block-scoped and reassignable.
+const: Use for variables that should not be reassigned, ensuring their value remains constant within the block scope.
+
+Qno.2 What is hoisting in Javascript? How does it affect var, let, and const?
+->
+Hoisting in JavaScript moves variable and function declarations to the top of their containing scope during the compile phase.
+var variables are hoisted and initialized to undefined. They can be accessed before declaration without causing an error (but return undefined).
+let and const variables are hoisted but remain uninitialized in the temporal dead zone until their declaration is encountered. Accessing them before declaration results in a ReferenceError.
+Function declarations are hoisted along with their bodies, allowing them to be called before their declaration in the code.
+Understanding hoisting helps in writing predictable JavaScript code and avoiding unexpected behaviors related to variable and function declarations.
+
+Q.no 3 Explain Javascript's dynamic typing and the typeof operator with the examples.
+->
+1. JavaScript's Dynamic Typing
+
+JavaScript is dynamically typed, meaning that variables in JavaScript are not bound to a specific data type. Unlike statically typed languages where variables are explicitly declared with a specific type and cannot change type during execution, JavaScript allows variables to hold values of any type and can change types as the program runs.
+
+Example of Dynamic Typing in JavaScript:
+
+let x = 10; // x is initially a number
+console.log(x); // Output: 10
+console.log(typeof x); // Output: "number"
+
+x = "Hello"; // x is now a string
+console.log(x); // Output: "Hello"
+console.log(typeof x); // Output: "string"
+
+x = true; // x is now a boolean
+console.log(x); // Output: true
+console.log(typeof x); // Output: "boolean"
+
+In the example above:
+x starts as a number (10), so typeof x returns "number".
+x is then assigned "Hello", changing its type to a string, and typeof x returns "string".
+Finally, x is assigned true, changing its type to a boolean, and typeof x returns "boolean".
+JavaScript's dynamic typing allows flexibility but requires careful handling to avoid unexpected behavior if variables change types unexpectedly.
+
+2.The typeof Operator
+
+The typeof operator in JavaScript is used to determine the type of a variable or an expression. It returns a string indicating the data type of the operand.
+
+Examples of typeof Operator:
+Using typeof with Variables:
+
+let a = 10;
+console.log(typeof a); // Output: "number"
+
+let b = "Hello";
+console.log(typeof b); // Output: "string"
+
+let c = true;
+console.log(typeof c); // Output: "boolean"
+
+In this example:
+typeof a returns "number" because a is assigned a numeric value.
+typeof b returns "string" because b is assigned a string value.
+typeof c returns "boolean" because c is assigned a boolean value.
+
+Using typeof with Expressions:
+
+console.log(typeof (10 + 5)); // Output: "number"
+console.log(typeof ("Hello" + "World")); // Output: "string"
+console.log(typeof (true && false)); // Output: "boolean"
+Here, typeof can also be used with expressions. The expressions (10 + 5), ("Hello" + "World"), and (true && false) are evaluated first, and then typeof determines their resulting types (number, string, and boolean respectively).
+ 
+ Q.no 4 How can you manipulate strings in Javascript? Provide examples of common methods.
+ ->
+String manipulation is a fundamental aspect of JavaScript programming. It involves various operations such as concatenation, extraction, transformation, and searching within strings. 
+The following are some of the methods used to manipulate strings:
+
+1. Concatenation
+
+Using the + operator:
+let str1 = "Hello";
+let str2 = "World";
+let result = str1 + " " + str2;
+console.log(result); // "Hello World"
+
+Using the concat() method:
+let str1 = "Hello";
+let str2 = "World";
+let result = str1.concat(" ", str2);
+console.log(result); // "Hello World"
+
+2. Extracting Substrings
+Using slice():
+let str = "Hello World";
+let result = str.slice(0, 5);
+console.log(result); // "Hello"
+
+Using substring():
+let str = "Hello World";
+let result = str.substring(0, 5);
+console.log(result); // "Hello"
+
+3. Changing Case
+
+Using toUpperCase():
+let str = "Hello World";
+let result = str.toUpperCase();
+console.log(result); // "HELLO WORLD"
+
+Using toLowerCase():
+let str = "Hello World";
+let result = str.toLowerCase();
+console.log(result); // "hello world"
+
+4. Replacing Substrings
+
+Using replace():
+let str = "Hello World";
+let result = str.replace("World", "JavaScript");
+console.log(result); // "Hello JavaScript"
+
+5. Trimming Whitespace
+
+Using trim():
+let str = "  Hello World  ";
+let result = str.trim();
+console.log(result); // "Hello World"
+
+
+Using trimStart() and trimEnd():
+let str = "  Hello World  ";
+console.log(str.trimStart()); // "Hello World  "
+console.log(str.trimEnd()); // "  Hello World"
+
+6. Splitting Strings
+
+Using split():
+
+let str = "Hello World";
+let result = str.split(" ");
+console.log(result); // ["Hello", "World"]
+
+7. Checking for Substrings
+
+Using includes():
+let str = "Hello World";
+let result = str.includes("World");
+console.log(result); // true
+
+Using startsWith():
+let str = "Hello World";
+let result = str.startsWith("Hello");
+console.log(result); // true
+
+Using endsWith():
+let str = "Hello World";
+let result = str.endsWith("World");
+console.log(result); // true
+
+8. Finding Substrings
+
+Using indexOf():
+let str = "Hello World";
+let result = str.indexOf("World");
+console.log(result); // 6
+
+Using lastIndexOf():
+let str = "Hello World, World";
+let result = str.lastIndexOf("World");
+console.log(result); // 13
+
+9. Repeating Strings
+
+Using repeat():
+let str = "Hello";
+let result = str.repeat(3);
+console.log(result); // "HelloHelloHello"
+
+10. Template Literals
+
+Using backticks and ${} for embedding expressions:
+let name = "World";
+let result = `Hello, ${name}!`;
+console.log(result); // "Hello, World!"
+ 
+Q.no 5 What are the differences and similarities between null and undefined in Javascript.
+
+In JavaScript, null and undefined are two distinct types that represent the absence of a value. Understanding the differences and similarities between them is crucial for effective JavaScript programming.
+
+1.Differences:
+
+Type
+
+null is an object.
+console.log(typeof null); // "object"
+
+undefined is a type itself.
+console.log(typeof undefined); // "undefined"
+
+Usage
+
+null is explicitly assigned to indicate the intentional absence of any object value.
+let obj = null; // Intentionally assigning no value
+
+undefined means a variable has been declared but not yet assigned a value.
+let x;
+console.log(x); // undefined
+
+Default Value
+
+null is never assigned by JavaScript as a default value.
+let y = null;
+console.log(y); // null
+
+undefined is the default value for uninitialized variables, function arguments that are not provided, and missing object properties.
+let z;
+console.log(z); // undefined
+
+function func(a) {
+  console.log(a); // undefined if no argument is passed
+}
+func();
+
+let obj = {};
+console.log(obj.prop); // undefined
+
+Equality
+
+null and undefined are loosely equal (==) but not strictly equal (===).
+console.log(null == undefined); // true
+console.log(null === undefined); // false
+
+Conversion to Boolean
+
+Both null and undefined are falsy values when converted to a Boolean.
+console.log(Boolean(null)); // false
+console.log(Boolean(undefined)); // false
+
+2. Similarities
+
+Absence of Value
+
+Both null and undefined represent the absence of a meaningful value.
+
+Falsy Values
+
+Both are considered falsy in Boolean contexts.
+
+if (!null) {
+  console.log("null is falsy"); // This will run
+}
+if (!undefined) {
+  console.log("undefined is falsy"); // This will run
+}
+
+Equality in Loose Comparison
+
+Both are equal (==) in a loose comparison.
+console.log(null == undefined); // true
+
+
